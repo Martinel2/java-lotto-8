@@ -2,6 +2,7 @@ package lotto.Domain;
 
 import lotto.Util.ErrorMessage;
 import lotto.Util.ExceptionUtil;
+import lotto.Util.ValidationUtil;
 
 // 당첨 번호 + 보너스 번호
 public class WinningLotto {
@@ -20,10 +21,9 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    //메서드 이름으로 유추할 수 있도록 한번 더 묶어줬음
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            ExceptionUtil.throwInvalidValue(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR);
-        }
+        ValidationUtil.validateLottoNumberRange(bonusNumber);
     }
 
     private void validateBonusNumberNoDuplicate(Lotto winningNumbers, int bonusNumber) {

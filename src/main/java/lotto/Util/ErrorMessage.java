@@ -8,7 +8,9 @@ public enum ErrorMessage {
 
     WINNING_NUMBER_BAD_FORMAT("당첨 번호 입력 형식을 준수해야 합니다. ex)1,2,3,4,5,6"),
 
-    PRICE_BAD_INPUT("구입 금액은 숫자여야 합니다.");
+    PRICE_BAD_INPUT("구입 금액은 숫자여야 합니다."),
+    PRICE_NOT_DIV_THOUSAND("구입 금액은 1000단위여야 합니다."),
+    PRICE_BAD_INTEGER("구입 금액은 0이나 음수가 될 수 없습니다.");
 
     private final String message;
 
