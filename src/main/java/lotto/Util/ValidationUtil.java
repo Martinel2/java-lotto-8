@@ -2,8 +2,8 @@ package lotto.Util;
 
 public final class ValidationUtil {
 
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
     public static final Integer MAX_SIZE = 6;
 
     // private 생성자로 객체 생성 방지
