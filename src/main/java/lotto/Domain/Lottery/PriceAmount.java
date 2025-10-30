@@ -1,14 +1,19 @@
-package lotto.Domain;
+package lotto.Domain.Lottery;
 
 import lotto.Util.ErrorMessage;
 import lotto.Util.ExceptionUtil;
 
 public class PriceAmount {
-    Integer price;
+    private static final int UNIT = 1000;
+    private final Integer price;
 
     public PriceAmount(Integer price) {
         validate(price);
         this.price = price;
+    }
+
+    public Integer countLotto() {
+        return price / UNIT;
     }
 
     private void validate(Integer price) {
@@ -23,7 +28,7 @@ public class PriceAmount {
     }
 
     private void validateDivByThousand(Integer price) {
-        if (price % 1000 != 0) {
+        if (price % UNIT != 0) {
             ExceptionUtil.throwInvalidValue(ErrorMessage.PRICE_NOT_DIV_THOUSAND);
         }
     }
