@@ -7,15 +7,20 @@ public class InputParser {
 
     public List<Integer> parseWinningNumbers(String winningNumbers) {
         try {
-            return Arrays.stream(winningNumbers.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
+            return makeWinningNumbers(winningNumbers);
         } catch (NumberFormatException e) {
             ExceptionUtil.throwInvalidValue(ErrorMessage.WINNING_NUMBER_BAD_FORMAT);
             return null;
         }
     }
+
+    private List<Integer> makeWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+    }
+
 
     public Integer parseBonusNumber(String bonusNumber) {
         try {
