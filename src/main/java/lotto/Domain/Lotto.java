@@ -2,7 +2,10 @@ package lotto.Domain;
 
 import lotto.Util.ErrorMessage;
 import lotto.Util.ExceptionUtil;
+import lotto.Util.ValidationUtil;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -11,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateRange(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -23,14 +27,20 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            validateRangeNumber(number);
+            ValidationUtil.validateLottoNumberRange(number);
         }
     }
 
-    private void validateRangeNumber(final int number) {
-        if (1 <= number && number <= 45) {
-            ExceptionUtil.throwInvalidValue(ErrorMessage.PRICE_BAD_INPUT);
+    // 당첨 번호간 중복 여부 체크
+    // 보너스 번호와 기능은 비슷하지만, 방식이 달라 합치지 않음
+    private void validateDuplicate(List<Integer> numbers) {
+        if (hasDuplicate(numbers)) {
+            ExceptionUtil.throwInvalidValue(ErrorMessage.NUMBER_DUPLICATE);
         }
+    }
+
+    private boolean hasDuplicate(Collection<Integer> numbers) {
+        return numbers.size() != new HashSet<>(numbers).size();
     }
 
     public boolean contains(int number) {

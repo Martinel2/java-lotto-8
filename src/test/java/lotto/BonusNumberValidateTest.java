@@ -16,9 +16,7 @@ public class BonusNumberValidateTest {
     private Lotto winningNumbers;
 
     @BeforeEach
-        // 2. 이 어노테이션을 추가
     void setUp() {
-        // 3. 필드를 초기화 (테스트마다 매번 새 객체 생성)
         this.winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
