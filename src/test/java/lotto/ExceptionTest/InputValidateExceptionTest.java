@@ -1,4 +1,4 @@
-package lotto;
+package lotto.ExceptionTest;
 
 import lotto.Util.ErrorMessage;
 import lotto.Util.InputParser;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class InputValidateTest {
+public class InputValidateExceptionTest {
     private final String ERROR_HEADER = "[ERROR] ";
     private final InputParser parser = new InputParser();
     /*

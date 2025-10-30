@@ -1,7 +1,7 @@
-package lotto;
+package lotto.ExceptionTest;
 
-import lotto.Domain.Lotto;
-import lotto.Domain.WinningLotto;
+import lotto.Domain.Lottery.Lotto;
+import lotto.Domain.Lottery.WinningLotto;
 import lotto.Util.ErrorMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class BonusNumberValidateTest {
+public class BonusNumberValidateExceptionTest {
     private final String ERROR_HEADER = "[ERROR] ";
     private Lotto winningNumbers;
 

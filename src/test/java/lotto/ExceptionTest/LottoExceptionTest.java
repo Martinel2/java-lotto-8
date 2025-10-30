@@ -1,6 +1,6 @@
-package lotto;
+package lotto.ExceptionTest;
 
-import lotto.Domain.Lotto;
+import lotto.Domain.Lottery.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoTest {
+class LottoExceptionTest {
     /*
     로또 번호 클래스 = 당첨 번호 클래스
     따라서 아래 예외가 모두 해결 되면 당첨 번호 관련 예외도 모두 검사됨!
@@ -30,13 +30,14 @@ class LottoTest {
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
     @DisplayName("로또 번호가 1-45를 초과하는 경우")
-    void NumbersRangeOverException(){
+    void NumbersRangeOverException() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     @DisplayName("로또 번호가 1-45 미만인 수가 존재하는 경우")
-    void NumbersRangeUnderException(){
+    void NumbersRangeUnderException() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
