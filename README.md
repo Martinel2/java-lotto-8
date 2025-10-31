@@ -187,7 +187,7 @@ private final List<Integer> numbers;
   - 당첨 금액 구현
 
 - [x] 당첨 번호 비교하기
-- [ ] 수익률 계산하기
+- [x] 수익률 계산하기
 
 - [x] 출력하기
 
