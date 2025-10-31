@@ -35,16 +35,9 @@ public class Lotto {
     }
 
     public int countMatches(IntPredicate intPredicate) {
-        int c = 0;
-        for (int number : numbers) {
-            c += testMatch(intPredicate, number);
-        }
-        return c;
-    }
-
-    private Integer testMatch(IntPredicate intPredicate, int number){
-        if (intPredicate.test(number)) return 1;
-        else return 0;
+        return (int) numbers.stream()
+                .filter(intPredicate::test)
+                .count();
     }
 
     private void validateRange(List<Integer> numbers) {
