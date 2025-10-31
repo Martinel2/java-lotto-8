@@ -26,4 +26,8 @@ public enum LottoRank implements PrizeTier {
         if (matchResult.count() == FIFTH.matchScore) return FIFTH;
         return NONE;
     }
+
+    public long getPrize() {
+        return prize;
+    }
 }

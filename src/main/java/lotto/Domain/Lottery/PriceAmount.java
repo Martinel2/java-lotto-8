@@ -16,6 +16,19 @@ public class PriceAmount {
         return price / UNIT;
     }
 
+    public Double getEarningRate(double earning){
+        return roundEarningRate(calculateEarningRate(earning));
+    }
+
+    private Double calculateEarningRate(double earning) {
+        // 수익률 = 당첨 금액 / 구입 금액 * 100
+        return earning / price * 100;
+    }
+
+    private Double roundEarningRate(double earningRate) {
+        return Math.round(earningRate * 100.0) / 100.0;
+    }
+
     private void validate(Integer price) {
         validatePositive(price);
         validateDivByThousand(price);
