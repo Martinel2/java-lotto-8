@@ -2,6 +2,7 @@ package lotto.Service;
 
 import lotto.DTO.EarningRateRequest;
 import lotto.DTO.LottoRequest;
+import lotto.Domain.Lottery.PriceAmount;
 import lotto.Domain.Rank.LottoRank;
 import lotto.Domain.Rule.LottoRule;
 
@@ -21,8 +22,9 @@ public class LottoService {
     }
 
     public Double getEarningRate(EarningRateRequest earningRateRequest) {
-        // 수익률 = 당첨 금액 / 구입 금액 * 100
-        return earningRateRequest.priceAmount().getEarningRate(getEarning(earningRateRequest.statistics()));
+        PriceAmount priceAmount = earningRateRequest.priceAmount();
+        Long earn = getEarning(earningRateRequest.statistics());
+        return priceAmount.getEarningRate(earn);
     }
 
     private List<LottoRank> getRanks(LottoRequest lottoRequest) {
