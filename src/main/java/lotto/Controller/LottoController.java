@@ -9,6 +9,7 @@ import lotto.Domain.Lottery.PriceAmount;
 import lotto.Domain.Lottery.WinningLotto;
 import lotto.Domain.Rank.LottoRank;
 import lotto.Service.LottoService;
+import lotto.Util.RetryUtil;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -44,16 +45,25 @@ public class LottoController {
     }
 
     private PriceAmount readPriceAmount() {
-        int price = InputView.readPrice();
-        return new PriceAmount(price);
+        return RetryUtil.retryUntilSuccess(() -> {
+            int price = InputView.readPrice();
+            return new PriceAmount(price);
+        });
     }
 
     private WinningLotto readWinningLotto() {
-        List<Integer> winningNumbers = InputView.readWinningNumber();
-        Lotto lotto = new Lotto(winningNumbers);
+        return RetryUtil.retryUntilSuccess(() -> {
+            Lotto lotto = makeWinningNumber();
+            int bonusNumber = InputView.readBonusNumber();
 
-        int bonusNumber = InputView.readBonusNumber();
+            return new WinningLotto(lotto, bonusNumber);
+        });
+    }
 
-        return new WinningLotto(lotto, bonusNumber);
+    private Lotto makeWinningNumber() {
+        return RetryUtil.retryUntilSuccess(() -> {
+            List<Integer> winningNumbers = InputView.readWinningNumber();
+            return new Lotto(winningNumbers);
+        });
     }
 }

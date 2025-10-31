@@ -2,6 +2,7 @@ package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Util.InputParser;
+import lotto.Util.RetryUtil;
 
 import java.util.List;
 
@@ -15,20 +16,26 @@ public class InputView {
     }
 
     public static Integer readPrice() {
-        System.out.println(PRICE_INPUT_MESSAGE);
-        String input = Console.readLine();
-        return inputParser.parsePrice(input);
+        return RetryUtil.retryUntilSuccess(() -> {
+            System.out.println(PRICE_INPUT_MESSAGE);
+            String input = Console.readLine();
+            return inputParser.parsePrice(input);
+        });
     }
 
     public static List<Integer> readWinningNumber() {
-        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
-        String input = Console.readLine();
-        return inputParser.parseWinningNumbers(input);
+        return RetryUtil.retryUntilSuccess(() -> {
+            System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
+            String input = Console.readLine();
+            return inputParser.parseWinningNumbers(input);
+        });
     }
 
     public static int readBonusNumber() {
-        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
-        String input = Console.readLine();
-        return inputParser.parseBonusNumber(input);
+        return RetryUtil.retryUntilSuccess(() -> {
+            System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+            String input = Console.readLine();
+            return inputParser.parseBonusNumber(input);
+        });
     }
 }

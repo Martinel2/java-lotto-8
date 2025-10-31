@@ -8,8 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String LOTTO_COUNT_RESULT_MESSAGE = "%d개를 구매했습니다.";
-    private static final String LOTTO_STATISTICS_HEADER = "당첨 통계\n" + "---";
+    private static final String LOTTO_COUNT_RESULT_MESSAGE = "\n%d개를 구매했습니다.";
+    private static final String LOTTO_STATISTICS_HEADER = """
+            
+            당첨 통계
+            ---
+            """;
     private static final String FIFTH_MESSAGE = "3개 일치 (5,000원) - %d개";
     private static final String FOURTH_MESSAGE = "4개 일치 (50,000원) - %d개";
     private static final String THIRD_MESSAGE = "5개 일치 (1,500,000원) - %d개";
@@ -30,7 +34,7 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(Lotto lotto){
-        System.out.println(lotto.toString());
+        lotto.printLotto();
     }
 
     public static void printPurchasedCount(int count) {

@@ -64,4 +64,8 @@ public class Lotto {
         return numbers.size() != new HashSet<>(numbers).size();
     }
 
+    public void printLotto(){
+        System.out.println(numbers);
+    }
+
 }
