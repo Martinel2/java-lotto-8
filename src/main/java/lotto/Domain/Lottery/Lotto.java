@@ -53,7 +53,6 @@ public class Lotto {
         }
     }
 
-    // 당첨 번호간 중복 여부 체크
     // 보너스 번호와 기능은 비슷하지만, 방식이 달라 합치지 않음
     private void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
