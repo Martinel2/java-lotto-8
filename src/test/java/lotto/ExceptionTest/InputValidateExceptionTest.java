@@ -1,5 +1,6 @@
 package lotto.ExceptionTest;
 
+import lotto.Domain.Lottery.PriceAmount;
 import lotto.Util.ErrorMessage;
 import lotto.Util.InputParser;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,17 @@ public class InputValidateExceptionTest {
         String error = ERROR_HEADER + errorMessage.getMessage();
 
         assertThatThrownBy(() -> parser.parsePrice("2milion"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(error); // 예외 메시지 검증
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 너무 큰 수인 경우")
+    void PriceOverflowException() {
+        ErrorMessage errorMessage = ErrorMessage.PRICE_BAD_INPUT;
+        String error = ERROR_HEADER + errorMessage.getMessage();
+
+        assertThatThrownBy(() -> parser.parsePrice("10000000000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(error); // 예외 메시지 검증
     }

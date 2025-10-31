@@ -13,6 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class WinningLottoTest {
+    private final LottoRule lottoRule = new LottoRule();
     private WinningLotto winningLotto;
     private List<Lotto> purchased;
 
@@ -40,7 +41,6 @@ public class WinningLottoTest {
     @Test
     @DisplayName("당첨 통계 테스트")
     public void WinningStatsTest(){
-        LottoRule lottoRule = new LottoRule();
         List<LottoRank> ranks = purchased.stream()
                 .map(l -> lottoRule.judge(winningLotto, l))
                 .toList();
