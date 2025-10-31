@@ -44,7 +44,7 @@ public class OutputView {
     // 결과 출력하기
     public static void printResult(LottoResult lottoResult) {
         printLottoStatisticsHeader();
-        printStatistics(lottoResult.lottoRankStatistics());
+        printAllStatistics(lottoResult.lottoRankStatistics());
         printEaringRate(lottoResult.earningRate());
     }
 
@@ -52,13 +52,21 @@ public class OutputView {
         System.out.println(LOTTO_STATISTICS_HEADER);
     }
 
-    // 통계 출력하기
-    public static void printStatistics(Map<LottoRank, Long> statistics) {
-        System.out.println(String.format(FIFTH_MESSAGE, statistics.getOrDefault(LottoRank.FIFTH, 0L)));
-        System.out.println(String.format(FOURTH_MESSAGE,statistics.getOrDefault(LottoRank.FOURTH, 0L)));
-        System.out.println(String.format(THIRD_MESSAGE,statistics.getOrDefault(LottoRank.THIRD, 0L)));
-        System.out.println(String.format(SECOND_MESSAGE,statistics.getOrDefault(LottoRank.SECOND, 0L)));
-        System.out.println(String.format(FIRST_MESSAGE,statistics.getOrDefault(LottoRank.FIRST, 0L)));
+    /*
+    이 코드가 하드코딩이 된 느낌이 있음
+    어떻게 바꾸어야 하드코딩에서 탈피할 수 있을까?
+    지금 무엇을, 어떻게 두가지가 하나의 메서드에 존재함
+     */
+    public static void printAllStatistics(Map<LottoRank, Long> statistics) {
+        printStatistics(FIFTH_MESSAGE, statistics, LottoRank.FIFTH);
+        printStatistics(FOURTH_MESSAGE, statistics, LottoRank.FOURTH);
+        printStatistics(THIRD_MESSAGE, statistics, LottoRank.THIRD);
+        printStatistics(SECOND_MESSAGE, statistics, LottoRank.SECOND);
+        printStatistics(FIRST_MESSAGE, statistics, LottoRank.FIRST);
+    }
+
+    public static void printStatistics(String message, Map<LottoRank, Long> statistics, LottoRank rank) {
+        System.out.println(String.format(message, statistics.getOrDefault(rank, 0L)));
     }
 
     // 수익률 출력하기
