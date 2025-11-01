@@ -29,26 +29,25 @@ public class OutputView {
         printAllLottoNumbers(lottos);
     }
 
-    public static void printAllLottoNumbers(List<Lotto> lottos){
-        lottos.forEach(OutputView::printLottoNumbers);
-    }
-
-    public static void printLottoNumbers(Lotto lotto){
-        lotto.printLotto();
-    }
-
     public static void printPurchasedCount(int count) {
-        System.out.println(String.format(LOTTO_COUNT_RESULT_MESSAGE, count));
+        System.out.println(formatPurchasedCount(count));
     }
 
-    // 결과 출력하기
     public static void printResult(LottoResult lottoResult) {
         printLottoStatisticsHeader();
         printAllStatistics(lottoResult.lottoRankStatistics());
         printEaringRate(lottoResult.earningRate());
     }
 
-    public static void printLottoStatisticsHeader(){
+    private static void printAllLottoNumbers(List<Lotto> lottos){
+        lottos.forEach(OutputView::printLottoNumbers);
+    }
+
+    private static void printLottoNumbers(Lotto lotto){
+        lotto.printLotto();
+    }
+
+    private static void printLottoStatisticsHeader(){
         System.out.println(LOTTO_STATISTICS_HEADER);
     }
 
@@ -57,7 +56,7 @@ public class OutputView {
     어떻게 바꾸어야 하드코딩에서 탈피할 수 있을까?
     지금 무엇을, 어떻게 두가지가 하나의 메서드에 존재함
      */
-    public static void printAllStatistics(Map<LottoRank, Long> statistics) {
+    private static void printAllStatistics(Map<LottoRank, Long> statistics) {
         printStatistics(FIFTH_MESSAGE, statistics, LottoRank.FIFTH);
         printStatistics(FOURTH_MESSAGE, statistics, LottoRank.FOURTH);
         printStatistics(THIRD_MESSAGE, statistics, LottoRank.THIRD);
@@ -65,13 +64,25 @@ public class OutputView {
         printStatistics(FIRST_MESSAGE, statistics, LottoRank.FIRST);
     }
 
-    public static void printStatistics(String message, Map<LottoRank, Long> statistics, LottoRank rank) {
-        System.out.println(String.format(message, statistics.getOrDefault(rank, 0L)));
+    private static void printStatistics(String message, Map<LottoRank, Long> statistics, LottoRank rank) {
+        System.out.println(formatStatistics(message,statistics,rank));
     }
 
-    // 수익률 출력하기
-    public static void printEaringRate(Double earningRate){
-        System.out.println(String.format(TOTAL_PROFIT_RATE, earningRate));
+    private static void printEaringRate(Double earningRate){
+        System.out.println(formatEaringRate(earningRate));
     }
+
+    private static String formatEaringRate(Double earningRate) {
+        return String.format(TOTAL_PROFIT_RATE, earningRate);
+    }
+
+    private static String formatPurchasedCount(int count){
+        return String.format(LOTTO_COUNT_RESULT_MESSAGE, count);
+    }
+
+    private static String formatStatistics(String message, Map<LottoRank, Long> statistics, LottoRank rank) {
+        return String.format(message, statistics.getOrDefault(rank, 0L));
+    }
+
 
 }
